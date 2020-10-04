@@ -1,0 +1,6 @@
+create table if not exists hr_manager (
+id serial primary key,
+name_manager varchar(50),
+vacancy_desc varchar(1000),
+vacancy_salary numeric
+)
