@@ -39,13 +39,17 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Названия</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Date of the post</th>
                     </tr>
                     </thead>
                     <tbody>
                     <% for (Post post : Store.instOf().findAllPosts()) { %>
                     <tr>
                         <td><%= post.getName() %></td>
+                        <td><%= post.getDescription() %></td>
+                        <td><%= post.getCreated() %></td>
                     </tr>
                     <% } %>
                     </tbody>
