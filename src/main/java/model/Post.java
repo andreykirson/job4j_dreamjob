@@ -9,11 +9,17 @@ public class Post {
     private String description;
     private LocalDate created;
 
+
     public Post(int id, String name, String description, LocalDate created) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.created = created;
+    }
+
+    public Post(int i, String name) {
+        this.id = i;
+        this.name = name;
     }
 
     public int getId() {
@@ -39,6 +45,7 @@ public class Post {
     public LocalDate getCreated() {
         return created;
     }
+
 
     @Override
     public boolean equals(Object o) {

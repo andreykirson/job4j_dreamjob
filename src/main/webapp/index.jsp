@@ -31,14 +31,17 @@
                 <a class="nav-link" href="<%=request.getContextPath()%>/posts.jsp">Вакансии</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.jsp">Кандидаты</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.jsp">Кандида</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить резюме</a>
-            </li>
+            <div>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить резюме</a>
+                </li>
+            </div>
+
 
         </ul>
     </div>
@@ -54,7 +57,7 @@
     <div class="row pt-3">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Сегодняшние кандидаты.
+                Сегодняшние кандидаты
             </div>
             <div class="card-body">
             </div>
