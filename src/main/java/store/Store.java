@@ -2,7 +2,6 @@ package store;
 
 import model.Candidate;
 import model.Post;
-
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
@@ -14,6 +13,7 @@ public class Store {
     private static final Store INST = new Store();
     private Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
     private static AtomicInteger POST_ID = new AtomicInteger(4);
+    private static AtomicInteger CANDIDATE_ID = new AtomicInteger(4);
 
     private Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
@@ -42,4 +42,10 @@ public class Store {
         post.setId(POST_ID.incrementAndGet());
         posts.put(post.getId(), post);
     }
+
+    public void saveCandidate(Candidate candidate) {
+        candidate.setId(CANDIDATE_ID.incrementAndGet());
+        candidates.put(candidate.getId(), candidate);
+    }
+
 }
