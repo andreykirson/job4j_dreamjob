@@ -1,0 +1,4 @@
+create table if not exists candidates (
+id serial primary key,
+candidate_name varchar(50)
+)

@@ -1,6 +1,0 @@
-create table if not exists hr_manager (
-id serial primary key,
-candidate_name varchar(50),
-experience_desc varchar(10000),
-candidate_salary numeric
-)
