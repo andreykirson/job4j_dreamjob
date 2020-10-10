@@ -1,8 +1,6 @@
 package servlet;
 import model.Candidate;
-import model.Post;
 import store.Store;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
