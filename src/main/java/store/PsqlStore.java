@@ -112,7 +112,8 @@ public class PsqlStore implements Store {
     private void update(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("UPDATE post SET vacancy_name = ? WHERE id = ?;")
-        ) { ps.setString(1, post.getName());
+        ) {
+            ps.setString(1, post.getName());
             ps.setInt(2, post.getId());
             ps.executeUpdate();
             } catch (Exception e) {
