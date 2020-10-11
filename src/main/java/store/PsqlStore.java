@@ -91,6 +91,16 @@ public class PsqlStore implements Store {
         }
     }
 
+    public void saveCandidate(Candidate candidate) {
+        if (candidate.getId() == 0) {
+            createCandidate(candidate);
+        } else {
+            updateCandidate(candidate);
+        }
+    }
+
+
+
     private Post create(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("INSERT INTO post(vacancy_name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
@@ -109,6 +119,28 @@ public class PsqlStore implements Store {
 
     }
 
+
+    private Candidate createCandidate(Candidate candidate) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("INSERT INTO candidates(candidate_name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, candidate.getName());
+            ps.execute();
+            try (ResultSet id = ps.getGeneratedKeys()) {
+                if (id.next()) {
+                    candidate.setId(id.getInt(1));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return candidate;
+
+    }
+
+
+
+
     private void update(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("UPDATE post SET vacancy_name = ? WHERE id = ?;")
@@ -120,6 +152,21 @@ public class PsqlStore implements Store {
             e.printStackTrace();
         }
     }
+
+    private void updateCandidate(Candidate candidate) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("UPDATE candidates SET candidate_name = ? WHERE id = ?;")
+        ) {
+            ps.setString(1, candidate.getName());
+            ps.setInt(2, candidate.getId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     @Override
     public Post findById(int id) {
@@ -138,4 +185,24 @@ public class PsqlStore implements Store {
         }
         return post;
     }
+
+    public Candidate findCandidateById(int id) {
+        Candidate candidate = null;
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM candidates WHERE id = ?;")
+        ) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    candidate = new Candidate(rs.getInt("id"), rs.getString("candidate_name"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return candidate;
+    }
+
+
+
 }
