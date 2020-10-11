@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="model.Candidate" %>
 <%@ page import="store.PsqlStore" %>
+<%@ page import="store.Store" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,7 +31,8 @@
     String id = request.getParameter("id");
     Candidate candidate = new Candidate(0, "");
     if (id != null) {
-        candidate = PsqlStore.instOf().findCandidateById(Integer.valueOf(id));
+        Store store = PsqlStore.instOf();
+        candidate = store.findCandidateById(Integer.valueOf(id));
     }
 %>
 
@@ -43,13 +47,19 @@
                 <% } %>
             </div>
             <div class="card-body">
-                <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>" method="post">
-                    <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                </form>
+                        <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>" method="post">
+                            <div class="form-group">
+                                <label>Имя</label>
+                                <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+            </br>
+                        <form action="<с:url value='/upload'>" method="post" enctype="multipart/form-data">
+                            <label for="img">Select photo:</label>
+                            <input type="file" value="Upload File" id="img" name="img" accept="image/*">
+                            <input type="submit">
+                        </form>
             </div>
         </div>
     </div>
