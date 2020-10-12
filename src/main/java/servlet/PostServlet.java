@@ -24,6 +24,4 @@ public class PostServlet extends HttpServlet {
         req.getRequestDispatcher("posts.jsp").forward(req, resp);
     }
 
-
-
 }

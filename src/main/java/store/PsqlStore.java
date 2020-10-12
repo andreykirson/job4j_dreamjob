@@ -166,8 +166,6 @@ public class PsqlStore implements Store {
     }
 
 
-
-
     @Override
     public Post findById(int id) {
         Post post = null;

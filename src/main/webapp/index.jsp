@@ -1,6 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="store.MemStore" %>
-<%@ page import="model.Post" %>
 
 
 <!doctype html>
@@ -28,6 +26,12 @@
     <div class="row">
         <ul class="nav">
             <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
             </li>
             <li class="nav-item">
@@ -36,11 +40,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
             </li>
-            <div>
-                <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить резюме</a>
-                </li>
-            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить резюме</a>
+            </li>
         </ul>
     </div>
     <div class="row">
