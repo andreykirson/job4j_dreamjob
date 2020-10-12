@@ -44,11 +44,13 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Photo</th>
+                        <th scope="col">Download</th>
                     </tr>
                     </thead>
                     <tbody>
 
                     <c:forEach items="${candidates}" var="candidate">
+                       <tr>
                             <td>
                                 <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
@@ -58,16 +60,16 @@
                         </tr>
                     </c:forEach>
 
-                    <c:forEach items="${images}" var="image" varStatus="status">
-                        <tr valign="top">
-                            <td>
-                                <img src="<c:url value='/download?name=${image}'/>" width="100px" height="100px"/>
-                            </td>
+<%--                    <c:forEach items="${images}" var="image" varStatus="status">--%>
+<%--                        <tr valign="top">--%>
+<%--                            <td>--%>
+<%--                                <img src="<c:url value='/download?name=${image}'/>" width="100px" height="100px"/>--%>
+<%--                            </td>--%>
 <%--                            <td>--%>
 <%--                                <a href="<c:url value='/download?name=${image}'/>">Download</a>--%>
 <%--                            </td>--%>
-                        </tr>
-                    </c:forEach>
+<%--                        </tr>--%>
+<%--                    </c:forEach>--%>
 
 
                     </tbody>

@@ -55,7 +55,7 @@
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
             </br>
-                        <form action="<с:url value='/upload'>" method="post" enctype="multipart/form-data">
+                        <form action="<c:url value='/upload'/>" method="post" enctype="multipart/form-data">
                             <label for="img">Select photo:</label>
                             <input type="file" value="Upload File" id="img" name="img" accept="image/*">
                             <input type="submit">
