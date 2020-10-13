@@ -58,6 +58,11 @@
                         <form action="<c:url value='/upload'/>" method="post" enctype="multipart/form-data">
                             <label for="img">Select photo:</label>
                             <input type="file" value="Upload File" id="img" name="img" accept="image/*">
+                            <c:forEach items="${images}" var="image" varStatus="status">
+                            <%
+                                candidate.setPhotoSrc((String) request.getAttribute("images"));
+                            %>
+                            </c:forEach>
                             <input type="submit">
                         </form>
             </div>
