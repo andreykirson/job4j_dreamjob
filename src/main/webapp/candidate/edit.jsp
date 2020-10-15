@@ -55,16 +55,13 @@
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
             </br>
-                        <form action="<c:url value='/upload'/>" method="post" enctype="multipart/form-data">
-                            <label for="img">Select photo:</label>
-                            <input type="file" value="Upload File" id="img" name="img" accept="image/*">
-                            <c:forEach items="${images}" var="image" varStatus="status">
-                            <%
-                                candidate.setPhotoSrc((String) request.getAttribute("images"));
-                            %>
-                            </c:forEach>
-                            <input type="submit">
-                        </form>
+                <form method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/upload?id=<%=candidate.getId()%>">
+                    <div class="checkbox">
+                        <input type="file" name="file">
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
             </div>
         </div>
     </div>

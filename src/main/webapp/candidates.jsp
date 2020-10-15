@@ -57,21 +57,14 @@
                                 </a>
                                 <c:out value="${candidate.name}"/>
                             </td>
+                           <td>
+                               <img src="<c:url value='/download?name=${candidate.photoSrc}'/>" alt="Добавьте фото" width="50px" height="50px"/>
+                           </td>
+                           <td>
+                               <a href="<c:url value='/download?name=${candidate.photoSrc}'/>">Download</a>
+                           </td>
                         </tr>
                     </c:forEach>
-
-<%--                    <c:forEach items="${images}" var="image" varStatus="status">--%>
-<%--                        <tr valign="top">--%>
-<%--                            <td>--%>
-<%--                                <img src="<c:url value='/download?name=${image}'/>" width="100px" height="100px"/>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <a href="<c:url value='/download?name=${image}'/>">Download</a>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                    </c:forEach>--%>
-
-
                     </tbody>
                 </table>
             </div>
