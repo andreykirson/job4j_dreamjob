@@ -37,6 +37,7 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Кандидаты
+                User:  <%=request.getSession().getAttribute("user")%>
             </div>
             <div class="card-body">
                 <table class="table">

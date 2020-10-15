@@ -25,12 +25,19 @@
 <div class="container">
     <div class="row">
         <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
-            </li>
+
+            <div class="card-header">
+                <% if (request.getSession().getAttribute("user") == null) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">Войти</a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> User:  <%=request.getSession().getAttribute("user")%> | Выйти</a>
+                </li>
+                <% } %>
+            </div>
+
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
             </li>

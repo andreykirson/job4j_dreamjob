@@ -32,8 +32,10 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Вакансии
+                <br>
+                User:  <%=request.getSession().getAttribute("user")%>
             </div>
-            <div class="card-body">
+             <div class="card-body">
                 <table class="table">
                     <thead>
                     <tr>
