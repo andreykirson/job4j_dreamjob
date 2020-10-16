@@ -50,11 +50,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить резюме</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/upload.jsp">Upload File</a>
-            </li>
-
-
         </ul>
     </div>
     <div class="row">
