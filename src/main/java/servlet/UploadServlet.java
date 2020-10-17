@@ -1,11 +1,9 @@
 package servlet;
 
-import model.Candidate;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import store.PsqlStore;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,12 +16,6 @@ import java.util.List;
 
 
 public class UploadServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("candidates", PsqlStore.instOf().findAllCandidates());
-        req.getRequestDispatcher("candidates.jsp").forward(req, resp);
-
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,7 +33,8 @@ public class UploadServlet extends HttpServlet {
             for (FileItem item : items) {
                 if (!item.isFormField()) {
                     File file = new File(folder + File.separator + item.getName());
-                    PsqlStore.instOf().setCandidatePhoto(file.getName(), Integer.parseInt(req.getParameter("id")));
+                    req.getSession().setAttribute("photoSource", file.getName());
+                    req.getSession().setAttribute("id", req.getSession().getAttribute("id"));
                     try (FileOutputStream out = new FileOutputStream(file)) {
                         out.write(item.getInputStream().readAllBytes());
                     }
@@ -50,6 +43,6 @@ public class UploadServlet extends HttpServlet {
         } catch (FileUploadException e) {
             e.printStackTrace();
         }
-        doGet(req, resp);
+        req.getRequestDispatcher("candidate/edit.jsp").forward(req, resp);
     }
 }

@@ -20,6 +20,12 @@
 <body>
 
 <div class="container">
+    <div class="card-header">
+        Upload photo
+        <br>
+        User:  <%=request.getSession().getAttribute("user")%>
+    </div>
+
     <table class="table">
         <thead>
         <tr>
@@ -39,7 +45,7 @@
         </tbody>
     </table>
     <h2>Upload image</h2>
-    <form action="<c:url value='/upload'/>" method="post" enctype="multipart/form-data">
+    <form action="<c:url value='/upload?id=<%=request.getParameter("id")%>'/>" method="post" enctype="multipart/form-data">
         <div class="checkbox">
             <input type="file" name="file">
         </div>

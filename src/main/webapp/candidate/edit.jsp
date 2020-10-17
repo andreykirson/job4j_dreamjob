@@ -47,21 +47,13 @@
                 <% } %>
             </div>
             <div class="card-body">
-                        <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>" method="post">
+                        <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>&photoSource=<%=request.getSession().getAttribute("photoSource")%>" method="post">
                             <div class="form-group">
                                 <label>Имя</label>
                                 <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
-            </br>
-                <form method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/upload?id=<%=candidate.getId()%>">
-                    <div class="checkbox">
-                        <input type="file" name="file">
-                    </div>
-
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
             </div>
         </div>
     </div>
