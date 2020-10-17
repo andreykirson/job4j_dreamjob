@@ -28,7 +28,7 @@
 <body>
 
 <%
-    String id = request.getParameter("id");
+    String id = (String) request.getSession().getAttribute("id");
     Candidate candidate = new Candidate(0, "");
     if (id != null) {
         Store store = PsqlStore.instOf();
@@ -51,6 +51,7 @@
                             <div class="form-group">
                                 <label>Имя</label>
                                 <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
+                                <input type="text" class="form-control" name="name" value="<%=request.getSession().getAttribute("photoSource")%>">
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>

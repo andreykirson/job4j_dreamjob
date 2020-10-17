@@ -48,7 +48,7 @@
                 <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить резюме</a>
+                <a class="nav-link" href="<%=request.getContextPath()%>/upload.jsp">Добавить резюме</a>
             </li>
         </ul>
     </div>

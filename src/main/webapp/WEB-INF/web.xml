@@ -73,6 +73,7 @@
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*.do</url-pattern>
+<!--        <url-pattern>upload.jsp</url-pattern>-->
     </filter-mapping>
 
 
