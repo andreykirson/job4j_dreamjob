@@ -227,15 +227,16 @@ public class PsqlStore implements Store {
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
-            ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
                     user.setId(id.getInt(1));
                 }
             }
+            ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return user;
     }
 
@@ -257,6 +258,24 @@ public class PsqlStore implements Store {
              PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users WHERE id = ?;")
         ) {
             ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    user = new User(rs.getInt("id"), rs.getString("user_name"), rs.getString("user_email"), rs.getString("user_password"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        User user = null;
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users WHERE email LIKE ?;")
+        ) {
+            ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     user = new User(rs.getInt("id"), rs.getString("user_name"), rs.getString("user_email"), rs.getString("user_password"));
