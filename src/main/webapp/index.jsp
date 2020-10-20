@@ -50,6 +50,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/upload.jsp">Добавить резюме</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/reg.jsp">Регистрация</a>
+            </li>
+
         </ul>
     </div>
     <div class="row">

@@ -1,13 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fruit
-  Date: 11.10.2020
-  Time: 22:03
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="model.Candidate" %>
-<%@ page import="store.PsqlStore" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,28 +20,29 @@
 
     <title>Работа мечты</title>
 </head>
+
 <body>
-<div class="container pt-3">
-    <div class="row">
-        <div class="card" style="width: 100%">
-            <div class="card-header">
-                Авторизация
-            </div>
-            <div class="card-body">
-                <form action="<%=request.getContextPath()%>/auth.do" method="post">
-                    <div class="form-group">
-                        <label>Почта</label>
-                        <input type="text" class="form-control" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label>Пароль</label>
-                        <input type="text" class="form-control" name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Войти</button>
-                </form>
-            </div>
-        </div>
+
+<h3>Registration</h3>
+<br>
+<form action="<c:url value='/reg.do'/>" method="post" enctype="multipart/form-data">
+
+    <div class="checkbox">
+        <label>Name</label>
+        <input type="text" name="name">
+        <br>
+        <label>E-mail</label>
+        <input type="text" name="e-mail">
+        <br>
+        <label>password</label>
+        <input type="text" name="password">
     </div>
-</div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
 </body>
 </html>

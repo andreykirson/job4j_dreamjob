@@ -55,6 +55,12 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
+
+                <br>
+                <form action="<%=request.getContextPath()%>/deleteCandidate.do?id=<%=candidate.getId()%>" method="post">
+                    <button type="submit" class="btn btn-primary">Delete Candidate</button>
+                </form>
+
             </div>
         </div>
     </div>

@@ -14,9 +14,11 @@ public interface Store {
     Post findById(int id);
     Candidate findCandidateById(int id);
     void setCandidatePhoto(String photoSource, int id);
+    void deleteCandidate(int id);
     User createUser(User user);
     void saveUser(User user);
     User findUserById(int id);
+    User findUserByEmail(String email);
     Collection<User> findAllUser();
     void updateUser(User user);
     void deleteUser(int id);

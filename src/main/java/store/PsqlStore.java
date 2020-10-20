@@ -220,6 +220,18 @@ public class PsqlStore implements Store {
     }
 
     @Override
+    public void deleteCandidate(int id) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("DELETE FROM candidates WHERE id = ?;")
+        ) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public User createUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("INSERT INTO users (user_name, user_email, user_password)  VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)
@@ -289,7 +301,7 @@ public class PsqlStore implements Store {
 
     @Override
     public Collection<User> findAllUser() {
-        List<User> users= new ArrayList<>();
+        List<User> users = new ArrayList<>();
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users")
         ) {
