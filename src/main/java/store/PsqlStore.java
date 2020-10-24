@@ -141,9 +141,6 @@ public class PsqlStore implements Store {
 
     }
 
-
-
-
     private void update(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("UPDATE post SET vacancy_name = ? WHERE id = ?;")
@@ -232,6 +229,15 @@ public class PsqlStore implements Store {
     }
 
     @Override
+    public void saveUser(User user) {
+        if (user.getId() == 0) {
+            createUser(user);
+        } else {
+            updateUser(user);
+        }
+    }
+
+    @Override
     public User createUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("INSERT INTO users (user_name, user_email, user_password)  VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)
@@ -252,14 +258,7 @@ public class PsqlStore implements Store {
         return user;
     }
 
-    @Override
-    public void saveUser(User user) {
-        if (user.getId() == 0) {
-            createUser(user);
-        } else {
-            updateUser(user);
-        }
-    }
+
 
 
 
@@ -285,7 +284,7 @@ public class PsqlStore implements Store {
     public User findUserByEmail(String email) {
         User user = null;
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users WHERE email LIKE ?;")
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM users WHERE user_email LIKE ?;")
         ) {
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {

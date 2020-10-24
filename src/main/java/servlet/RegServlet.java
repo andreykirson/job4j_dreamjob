@@ -1,6 +1,7 @@
 package servlet;
 
 import model.Post;
+import model.User;
 import store.PsqlStore;
 
 import javax.servlet.ServletException;
@@ -13,14 +14,13 @@ public class RegServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
-        PsqlStore.instOf().save(new Post(Integer.valueOf(req.getParameter("id")), req.getParameter("name")));
-        resp.sendRedirect(req.getContextPath() + "/posts.do");
+        PsqlStore.instOf().saveUser(new User(0, (req.getParameter("name")), req.getParameter("e-mail"), req.getParameter("password")));
+        resp.sendRedirect(req.getContextPath() + "/login.jsp");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("posts", PsqlStore.instOf().findAllPosts());
         req.setAttribute("user", req.getSession().getAttribute("user"));
-        req.getRequestDispatcher("posts.jsp").forward(req, resp);
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 }

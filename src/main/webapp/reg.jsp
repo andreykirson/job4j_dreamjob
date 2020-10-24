@@ -1,3 +1,6 @@
+<%@ page import="store.Store" %>
+<%@ page import="store.PsqlStore" %>
+<%@ page import="model.User" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -25,7 +28,7 @@
 
 <h3>Registration</h3>
 <br>
-<form action="<c:url value='/reg.do'/>" method="post" enctype="multipart/form-data">
+<form action="<c:url value='/reg.do'/>" method="post">
 
     <div class="checkbox">
         <label>Name</label>
@@ -40,9 +43,5 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-
-
-
 </body>
 </html>

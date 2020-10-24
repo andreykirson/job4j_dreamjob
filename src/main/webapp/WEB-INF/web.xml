@@ -84,8 +84,6 @@
     </servlet-mapping>
 
 
-
-
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>filter.AuthFilter</filter-class>
@@ -94,8 +92,12 @@
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*.do</url-pattern>
-<!--        <url-pattern>upload.jsp</url-pattern>-->
+        <url-pattern>/upload.jsp</url-pattern>
+        <url-pattern>/post/edit.jsp</url-pattern>
     </filter-mapping>
+
+
+
 
 
 </web-app>
