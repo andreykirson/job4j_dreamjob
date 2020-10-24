@@ -1,5 +1,5 @@
 create table if not exists candidates (
 id serial primary key,
 candidate_name varchar(50),
-photo_sourse varchar(200)
+photo_source varchar(200)
 )

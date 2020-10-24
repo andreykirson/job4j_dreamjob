@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="job4j_drearmjob:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>job4j_drearmjob</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="job4j_dreamjob.war">
+      <element id="artifact" artifact-name="job4j_drearmjob:war exploded" />
+    </root>
+  </artifact>
+</component>

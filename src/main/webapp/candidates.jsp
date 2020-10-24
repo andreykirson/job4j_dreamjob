@@ -56,6 +56,10 @@
                                 <a href='<c:url value="/upload.jsp?id=${candidate.id}"/>'>
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
+                                <a href='<c:url value="/deleteCandidate.jsp?id=${candidate.id}&name=${candidate.name}"/>'>
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                                <br>
                                 <c:out value="${candidate.name}"/>
                             </td>
                            <td>

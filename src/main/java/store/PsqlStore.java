@@ -74,7 +74,7 @@ public class PsqlStore implements Store {
         ) {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
-                    candidates.add(new Candidate(it.getInt("id"), it.getString("candidate_name"), it.getString("photo_sourse")));
+                    candidates.add(new Candidate(it.getInt("id"), it.getString("candidate_name"), it.getString("photo_source")));
 
                 }
             }
@@ -124,7 +124,7 @@ public class PsqlStore implements Store {
 
     private Candidate createCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("INSERT INTO candidates (candidate_name, photo_sourse)  VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)
+             PreparedStatement ps =  cn.prepareStatement("INSERT INTO candidates (candidate_name, photo_source)  VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, candidate.getName());
             ps.setString(2, candidate.getPhotoSrc());
@@ -158,7 +158,7 @@ public class PsqlStore implements Store {
 
     private void updateCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("UPDATE candidates SET candidate_name = ?, photo_sourse = ? WHERE id = ?;")
+             PreparedStatement ps =  cn.prepareStatement("UPDATE candidates SET candidate_name = ?, photo_source = ? WHERE id = ?;")
         ) {
             ps.setString(1, candidate.getName());
             ps.setString(2, candidate.getPhotoSrc());
@@ -209,7 +209,7 @@ public class PsqlStore implements Store {
     @Override
     public void setCandidatePhoto(String photoSource, int id) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("UPDATE candidates SET photo_sourse = ? WHERE id = ?;")
+             PreparedStatement ps =  cn.prepareStatement("UPDATE candidates SET photo_source = ? WHERE id = ?;")
         ) {
             ps.setString(1, photoSource);
             ps.setInt(2, id);
