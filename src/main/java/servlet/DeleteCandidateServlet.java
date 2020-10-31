@@ -4,7 +4,6 @@ import model.Candidate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import store.PsqlStore;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,20 +22,13 @@ public class DeleteCandidateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
         Candidate candidate = PsqlStore.instOf().findCandidateById(Integer.parseInt(req.getParameter("id")));
-        try
-        {
+        try {
             Files.deleteIfExists(Paths.get(candidate.getPhotoSrc()));
-        }
-        catch(NoSuchFileException e)
-        {
+        } catch (NoSuchFileException e) {
             LOG.debug("No such file/directory exists");
-        }
-        catch(DirectoryNotEmptyException e)
-        {
+        } catch (DirectoryNotEmptyException e) {
             LOG.debug("Directory is not empty.");
-        }
-        catch(IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Invalid permissions.");
             LOG.debug("Invalid permissions.");
         }

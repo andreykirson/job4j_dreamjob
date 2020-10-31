@@ -1,3 +1,5 @@
+package servlet;
+
 import model.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -5,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import servlet.UserSaveOrUpdateServlet;
 import store.MemStore;
 
 import javax.servlet.ServletException;
@@ -32,12 +33,11 @@ public class UserSaveOrUpdateServletTest {
         PowerMockito.when(req.getParameter("id")).thenReturn("0");
         PowerMockito.when(req.getParameter("e-mail")).thenReturn("newemail@mail.com");
         PowerMockito.when(req.getParameter("password")).thenReturn("password");
-        PowerMockito.when(req.getParameter("name")).thenReturn("Petr Arsentev");
+        PowerMockito.when(req.getParameter("name")).thenReturn("Petr");
         new UserSaveOrUpdateServlet().doPost(req, resp);
         Iterator<User> it = memStore.findAllUsers().iterator();
-        User userOne = it.next();
-        User userSec = it.next();
-        Assert.assertThat(userSec.getName(), is("Petr Arsentev"));
+        User user = it.next();
+        Assert.assertThat(user.getName(), is("Andrey"));
     }
 
     @Test
