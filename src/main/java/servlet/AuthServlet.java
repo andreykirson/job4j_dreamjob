@@ -1,6 +1,7 @@
 package servlet;
 
 import model.User;
+import store.PsqlStore;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletException;
@@ -12,14 +13,12 @@ import java.io.IOException;
 public class AuthServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = PsqlStore.instOf().findUserByEmail(req.getParameter("email"));
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if ("root@local".equals(email) && "root".equals(password)) {
+        if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
             HttpSession sc = req.getSession();
-            User admin = new User();
-            admin.setName("Admin");
-            admin.setEmail(email);
-            sc.setAttribute("user", admin);
+            sc.setAttribute("user", user);
             resp.sendRedirect(req.getContextPath() + "/posts.do");
         } else {
             req.setAttribute("error", "Не верный email или пароль");
