@@ -1,6 +1,8 @@
 package servlet;
+
 import model.Candidate;
 import store.PsqlStore;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,5 +27,4 @@ public class CandidateServlet extends HttpServlet {
         req.setAttribute("user", req.getSession().getAttribute("user"));
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
-
 }

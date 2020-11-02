@@ -1,6 +1,7 @@
 package store;
 
 import model.Candidate;
+import model.City;
 import model.Post;
 import model.User;
 
@@ -22,5 +23,5 @@ public interface Store {
     Collection<User> findAllUser();
     void updateUser(User user);
     void deleteUser(int id);
-
+    Collection<City> findAllCities();
 }

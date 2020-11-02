@@ -2,7 +2,9 @@
 <%@ page import="model.Candidate" %>
 <%@ page import="store.PsqlStore" %>
 <%@ page import="store.Store" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <!doctype html>
 <html lang="en">
@@ -23,16 +25,33 @@
     <title>Работа мечты</title>
 
     <script>
-        function validate() {
-            var x = document.forms["edit-form"]["name"].value;
+
+    function validate() {
+            var x = document.forms["edit-form"]["candidate-name"].value;
             if (x == "") {
                 alert("Please enter the candidate name");
                 return false;
             }
             return true;
         }
-    </script>
 
+        $(document).ready(function()
+        {
+            $('#id_btn').click(function () {
+
+                var options = $("#sel-city");
+                $.getJSON("http://localhost:8080/dreamjob/city.do", function (response) {
+                    $.each(response, function () {
+                        options.append($("<option />").val(this.id).text(this.name));
+                    });
+                });
+
+            })})
+
+
+
+
+    </script>
 
 </head>
 <body>
@@ -45,6 +64,8 @@
         candidate = store.findCandidateById(Integer.valueOf(id));
     }
 %>
+
+
 
 <div class="container pt-3">
     <div class="row">
@@ -60,14 +81,22 @@
                         <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>&photoSource=<%=request.getSession().getAttribute("photoSource")%>" method="post" name="edit-form">
                             <div class="form-group">
                                 <label>Имя</label>
-                                <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
-                                <input type="text" class="form-control" name="name" value="<%=request.getSession().getAttribute("photoSource")%>">
+                                <input type="text" class="form-control" name="candidate-name" value="<%=candidate.getName()%>">
+                                <input type="text" class="form-control" name="name-photo" value="<%=request.getSession().getAttribute("photoSource")%>">
+                                <label>Выбрать город</label>
+                                <input type="button" id="id_btn" name="btn_trial" value="Fill city..">
+                                <select name="select" id="sel-city">
+                                    <option>Please select your State first</option>
+                                </select>
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="validate()";>Save</button>
+                            <button type="submit" class="btn btn-primary" onclick="return validate()";>Save</button>
                         </form>
             </div>
         </div>
     </div>
 </div>
 </body>
+
+
+
 </html>

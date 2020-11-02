@@ -1,9 +1,11 @@
 package store;
 
+import model.Candidate;
+import model.City;
+import model.Post;
 import model.User;
 import org.apache.commons.dbcp2.BasicDataSource;
-import model.Candidate;
-import model.Post;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -341,4 +343,23 @@ public class PsqlStore implements Store {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public Collection<City> findAllCities() {
+        List<City> cities = new ArrayList<>();
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM city")
+        ) {
+            try (ResultSet it = ps.executeQuery()) {
+                while (it.next()) {
+                    cities.add(new City(it.getInt("id"), it.getString("city_name")));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cities;
+    }
+
+
 }
