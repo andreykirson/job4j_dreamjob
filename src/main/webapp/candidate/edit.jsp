@@ -16,8 +16,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
@@ -35,21 +34,20 @@
             return true;
         }
 
-        $(document).ready(function()
-        {
-            $('#id_btn').click(function () {
-
-                var options = $("#sel-city");
-                $.getJSON("http://localhost:8080/dreamjob/city.do", function (response) {
-                    $.each(response, function () {
-                        options.append($("<option />").val(this.id).text(this.name));
-                    });
+    $(document).ready(function () {
+        $.ajax({
+            url: 'http://localhost:8080/dreamjob/city.do',
+            type: "GET",
+            dataType: "json",
+            success: function(data){
+                var data = JSON.parse(JSON.stringify(data))
+                var options = $("#select-city");
+                $.each(data, function(index) {
+                    options.append($("<option />").val(data[index].id).text(data[index].name));
                 });
-
-            })})
-
-
-
+            }
+        });
+    })
 
     </script>
 
@@ -83,10 +81,8 @@
                                 <label>Имя</label>
                                 <input type="text" class="form-control" name="candidate-name" value="<%=candidate.getName()%>">
                                 <input type="text" class="form-control" name="name-photo" value="<%=request.getSession().getAttribute("photoSource")%>">
-                                <label>Выбрать город</label>
-                                <input type="button" id="id_btn" name="btn_trial" value="Fill city..">
-                                <select name="select" id="sel-city">
-                                    <option>Please select your State first</option>
+                                <select name="select" id="select-city">
+                                    <option>Please select your City</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary" onclick="return validate()";>Save</button>
