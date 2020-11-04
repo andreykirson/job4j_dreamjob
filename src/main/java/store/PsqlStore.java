@@ -126,10 +126,11 @@ public class PsqlStore implements Store {
 
     private Candidate createCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("INSERT INTO candidates (candidate_name, photo_source)  VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)
+             PreparedStatement ps =  cn.prepareStatement("INSERT INTO candidates (candidate_name, photo_source, city_id)  VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, candidate.getName());
             ps.setString(2, candidate.getPhotoSrc());
+            ps.setInt(3, candidate.getCityId());
             ps.execute();
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
@@ -157,11 +158,12 @@ public class PsqlStore implements Store {
 
     private void updateCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps =  cn.prepareStatement("UPDATE candidates SET candidate_name = ?, photo_source = ? WHERE id = ?;")
+             PreparedStatement ps =  cn.prepareStatement("UPDATE candidates SET candidate_name = ?, photo_source = ?, city_id = ? WHERE id = ?;")
         ) {
             ps.setString(1, candidate.getName());
             ps.setString(2, candidate.getPhotoSrc());
-            ps.setInt(3, candidate.getId());
+            ps.setInt(3, candidate.getCityId());
+            ps.setInt(4, candidate.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

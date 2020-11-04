@@ -6,6 +6,7 @@ public class Candidate {
     private int id;
     private String name;
     private String photoSrc;
+    private int cityId;
 
     public Candidate(int id, String name) {
         this.id = id;
@@ -40,6 +41,14 @@ public class Candidate {
 
     public String getPhotoSrc() {
         return photoSrc;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     @Override

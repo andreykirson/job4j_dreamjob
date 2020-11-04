@@ -46,6 +46,20 @@
             }
         });
     })
+
+    function onSubmit(form){
+        $.ajax({
+            url: 'http://localhost:8080/dreamjob/candidates.do',
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify( $(form).serializeArray()),
+            success: function(data){
+                window.location = 'http://localhost:8080/dreamjob/candidates.jsp';
+            }
+        });
+    }
+
     </script>
 
 </head>
@@ -57,6 +71,7 @@
     if (id != null) {
         Store store = PsqlStore.instOf();
         candidate = store.findCandidateById(Integer.valueOf(id));
+        System.out.println(candidate.getId());
     }
 %>
 
@@ -71,17 +86,17 @@
                 <% } %>
             </div>
             <div class="card-body">
-                        <form method="post" name="edit-candidate" id = "id-edit-candidate"
-                                action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>&photoSource=<%=request.getSession().getAttribute("photoSource")%>" >
+                        <form method="post" name="edit-candidate" id = "id-edit-candidate" enctype="multipart/form-data" onsubmit='return onSubmit(this)'>
                             <div class="form-group">
                                 <label>Имя</label>
+                                <input type="number" class="form-control" hidden name="id" value="<%=candidate.getId()%>">
                                 <input type="text" class="form-control" name="candidate-name" value="<%=candidate.getName()%>">
                                 <input type="text" class="form-control" name="name-photo" value="<%=request.getSession().getAttribute("photoSource")%>">
                                 <select name="select" id="select-city">
                                     <option>Please select your City</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary" id = "submit" onclick="return validate()";>Save</button>
+                            <button type="submit" class="btn btn-primary" onclick="return validate()";>Save</button>
                         </form>
             </div>
         </div>

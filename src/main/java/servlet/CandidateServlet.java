@@ -1,5 +1,8 @@
 package servlet;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import model.Candidate;
 import store.PsqlStore;
 
@@ -7,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 
 
@@ -15,10 +19,29 @@ public class CandidateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
-        Candidate candidate = new Candidate(Integer.parseInt(req.getParameter("id")), req.getParameter("name"));
-        candidate.setPhotoSrc(req.getParameter("photoSource"));
-        PsqlStore.instOf().saveCandidate(candidate);
-        resp.sendRedirect(req.getContextPath() + "/candidates.do");
+        try (BufferedReader reader = req.getReader()) {
+            StringBuilder fullLine = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                fullLine.append(line);
+            }
+            JsonElement jsonElement =  new JsonParser().parse(String.valueOf(fullLine));
+            JsonArray jsonArray = jsonElement.getAsJsonArray();
+
+           int candidateId = Integer.parseInt(jsonArray.get(0).getAsJsonObject().get("value").toString());
+           String candidateName = jsonArray.get(1).getAsJsonObject().get("value").toString();
+           String candidatePhotoSource = jsonArray.get(2).getAsJsonObject().get("value").toString();
+           int candidateCityId = Integer.parseInt(jsonArray.get(3).getAsJsonObject().get("value").toString());
+           Candidate candidate = new Candidate(candidateId, candidateName);
+           candidate.setPhotoSrc(candidatePhotoSource);
+           candidate.setCityId(candidateCityId);
+           PsqlStore.instOf().saveCandidate(candidate);
+           resp.sendRedirect(req.getContextPath() + "/candidates.do");
+
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
