@@ -2,9 +2,7 @@
 <%@ page import="model.Candidate" %>
 <%@ page import="store.PsqlStore" %>
 <%@ page import="store.Store" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <!doctype html>
 <html lang="en">
@@ -26,7 +24,7 @@
     <script>
 
     function validate() {
-            var x = document.forms["edit-form"]["candidate-name"].value;
+            var x = document.forms["edit-candidate"]["candidate-name"].value;
             if (x == "") {
                 alert("Please enter the candidate name");
                 return false;
@@ -48,7 +46,6 @@
             }
         });
     })
-
     </script>
 
 </head>
@@ -63,8 +60,6 @@
     }
 %>
 
-
-
 <div class="container pt-3">
     <div class="row">
         <div class="card" style="width: 100%">
@@ -76,7 +71,8 @@
                 <% } %>
             </div>
             <div class="card-body">
-                        <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>&photoSource=<%=request.getSession().getAttribute("photoSource")%>" method="post" name="edit-form">
+                        <form method="post" name="edit-candidate" id = "id-edit-candidate"
+                                action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>&photoSource=<%=request.getSession().getAttribute("photoSource")%>" >
                             <div class="form-group">
                                 <label>Имя</label>
                                 <input type="text" class="form-control" name="candidate-name" value="<%=candidate.getName()%>">
@@ -85,7 +81,7 @@
                                     <option>Please select your City</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="return validate()";>Save</button>
+                            <button type="submit" class="btn btn-primary" id = "submit" onclick="return validate()";>Save</button>
                         </form>
             </div>
         </div>
