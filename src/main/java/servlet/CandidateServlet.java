@@ -28,10 +28,10 @@ public class CandidateServlet extends HttpServlet {
             JsonElement jsonElement =  new JsonParser().parse(String.valueOf(fullLine));
             JsonArray jsonArray = jsonElement.getAsJsonArray();
 
-           int candidateId = Integer.parseInt(jsonArray.get(0).getAsJsonObject().get("value").toString());
-           String candidateName = jsonArray.get(1).getAsJsonObject().get("value").toString();
-           String candidatePhotoSource = jsonArray.get(2).getAsJsonObject().get("value").toString();
-           int candidateCityId = Integer.parseInt(jsonArray.get(3).getAsJsonObject().get("value").toString());
+           int candidateId = Integer.parseInt(jsonArray.get(0).getAsJsonObject().get("value").toString().replaceAll("\"", ""));
+           String candidateName = jsonArray.get(1).getAsJsonObject().get("value").toString().replaceAll("\"", "");
+           String candidatePhotoSource = jsonArray.get(2).getAsJsonObject().get("value").toString().replaceAll("\"", "");
+           int candidateCityId = Integer.parseInt(jsonArray.get(3).getAsJsonObject().get("value").toString().replaceAll("\"", ""));
            Candidate candidate = new Candidate(candidateId, candidateName);
            candidate.setPhotoSrc(candidatePhotoSource);
            candidate.setCityId(candidateCityId);

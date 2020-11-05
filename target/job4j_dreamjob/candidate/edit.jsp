@@ -54,8 +54,8 @@
             dataType: "json",
             contentType: 'application/json',
             data: JSON.stringify( $(form).serializeArray()),
-            success: function(data){
-                window.location = 'http://localhost:8080/dreamjob/candidates.jsp';
+            success:function(data){
+                    window.location = "http://localhost:8080/dreamjob/candidates.do";
             }
         });
     }
