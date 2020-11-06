@@ -47,19 +47,6 @@
         });
     })
 
-    function onSubmit(form){
-        $.ajax({
-            url: 'http://localhost:8080/dreamjob/candidates.do',
-            type: "POST",
-            dataType: "json",
-            contentType: 'application/json',
-            data: JSON.stringify( $(form).serializeArray()),
-            success:function(data){
-                    window.location = "http://localhost:8080/dreamjob/candidates.do";
-            }
-        });
-    }
-
     </script>
 
 </head>
@@ -86,7 +73,7 @@
                 <% } %>
             </div>
             <div class="card-body">
-                        <form method="post" name="edit-candidate" id = "id-edit-candidate" enctype="multipart/form-data" onsubmit='return onSubmit(this)'>
+                        <form action="<%=request.getContextPath()%>/candidates.do" method="post">
                             <div class="form-group">
                                 <label>Имя</label>
                                 <input type="number" class="form-control" hidden name="id" value="<%=candidate.getId()%>">
