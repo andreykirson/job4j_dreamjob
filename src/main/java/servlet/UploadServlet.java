@@ -34,7 +34,6 @@ public class UploadServlet extends HttpServlet {
                 if (!item.isFormField()) {
                     File file = new File(folder + File.separator + item.getName());
                     req.getSession().setAttribute("photoSource", file.getName());
-                    req.getSession().setAttribute("id", req.getSession().getAttribute("id"));
                     try (FileOutputStream out = new FileOutputStream(file)) {
                         out.write(item.getInputStream().readAllBytes());
                     }

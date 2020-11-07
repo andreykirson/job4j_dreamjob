@@ -53,9 +53,9 @@
 <body>
 
 <%
-    String id = (String) request.getSession().getAttribute("id");
+    String id = request.getParameter("id");
     Candidate candidate = new Candidate(0, "");
-    if (id != null) {
+    if (id != null && !id.equals("null")) {
         Store store = PsqlStore.instOf();
         candidate = store.findCandidateById(Integer.valueOf(id));
         System.out.println(candidate.getId());
