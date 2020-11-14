@@ -7,6 +7,11 @@ import model.User;
 
 import java.util.Collection;
 
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
+
 public interface Store {
     Collection<Post> findAllPosts();
     Collection<Candidate> findAllCandidates();

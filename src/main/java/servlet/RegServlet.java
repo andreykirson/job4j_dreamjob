@@ -1,6 +1,5 @@
 package servlet;
 
-import model.Post;
 import model.User;
 import store.PsqlStore;
 
@@ -9,6 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
+
 
 public class RegServlet extends HttpServlet {
     @Override

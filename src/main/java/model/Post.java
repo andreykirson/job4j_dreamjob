@@ -3,6 +3,11 @@ package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
+
 public class Post {
     private int id;
     private String name;

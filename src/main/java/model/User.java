@@ -2,6 +2,11 @@ package model;
 
 import java.util.Objects;
 
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
+
 public class User {
     private int id;
     private String name;

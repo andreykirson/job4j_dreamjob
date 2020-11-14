@@ -9,6 +9,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
+
 public class MemStore {
 
     private static final MemStore INST = new MemStore();

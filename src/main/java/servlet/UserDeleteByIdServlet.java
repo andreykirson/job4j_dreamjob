@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author
- * @date
+ * @author Andrey
+ * @date 01/11/2020
  */
 
 public class UserDeleteByIdServlet extends HttpServlet {

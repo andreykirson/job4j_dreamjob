@@ -14,6 +14,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
 
 public class UploadServlet extends HttpServlet {
 

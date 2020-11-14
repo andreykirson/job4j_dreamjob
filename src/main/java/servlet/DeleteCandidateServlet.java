@@ -14,6 +14,12 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
+
+
 public class DeleteCandidateServlet extends HttpServlet {
 
     private static final Logger LOG = LoggerFactory.getLogger(DeleteCandidateServlet.class.getName());

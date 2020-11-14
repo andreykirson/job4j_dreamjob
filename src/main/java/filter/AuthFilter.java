@@ -5,8 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-import javax.servlet.FilterConfig;
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
 
 public class AuthFilter implements Filter {
     @Override

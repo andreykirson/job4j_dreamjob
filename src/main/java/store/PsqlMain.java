@@ -2,6 +2,11 @@ package store;
 
 import model.Post;
 
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
+
 public class PsqlMain {
     public static void main(String[] args) {
         Store store = PsqlStore.instOf();

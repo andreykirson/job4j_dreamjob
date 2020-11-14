@@ -5,7 +5,6 @@ import model.City;
 import model.Post;
 import model.User;
 import org.apache.commons.dbcp2.BasicDataSource;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -15,6 +14,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+
+/**
+ * @author Andrey
+ * @date 01/11/2020
+ */
 
 public class PsqlStore implements Store {
 
