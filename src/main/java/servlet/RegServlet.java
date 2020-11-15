@@ -20,7 +20,6 @@ public class RegServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
         PsqlStore.instOf().saveUser(new User(0, (req.getParameter("Name")), req.getParameter("Email Address"), req.getParameter("Password")));
-        System.out.println(req.getParameter("Name") + " " + req.getParameter("Email Address")+ " " + req.getParameter("Password"));
         resp.sendRedirect(req.getContextPath() + "/login.jsp");
     }
 

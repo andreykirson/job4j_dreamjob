@@ -4,9 +4,9 @@
 
 
 
-## The dream job
+## Java WEB project
 
-This project represents the basic site for adding candidates and vacancies.
+This project represents the basic java web technology. 
 
 ##### Functionality:
 - Authentication.
